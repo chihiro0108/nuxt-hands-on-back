@@ -2,11 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  buildModules: [
+  modules: [
     '@nuxtjs/vuetify',
-    '@nuxtjs/dotenv', 
+    '@nuxtjs/dotenv'
   ],
-  server: {
-    port: 8080 
-  },
 })

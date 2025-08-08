@@ -19,6 +19,10 @@
           todos: [],
         };
       },
+      created() {
+        const config = useRuntimeConfig();
+        console.log("API_KEY:", config.public.apiKey);
+      },
       methods: {
         async addTodo(title) {
           const { $axios } = useNuxtApp();

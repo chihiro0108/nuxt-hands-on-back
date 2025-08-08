@@ -5,4 +5,11 @@ export default defineNuxtConfig({
   modules: [
     'vuetify-nuxt-module'
   ],
+  runtimeConfig: {
+    public: {
+      apiKey: process.env.API_KEY,
+      authDomain: process.env.AUTH_DOMAIN,
+      projectId: process.env.PROJECT_ID,
+    }
+  }
 })

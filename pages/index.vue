@@ -8,7 +8,6 @@
 <script>
     import AddTodo from "@/components/AddTodo";
     import TodoList from "@/components/TodoList";
-    import axios from "@/plugins/axios";
   
     export default {
       components: {
@@ -22,7 +21,8 @@
       },
       methods: {
         async addTodo(title) {
-          await axios.post("/v1/todos", { title });
+          const { $axios } = useNuxtApp();
+          await $axios.post("/v1/todos", { title });
           this.todos.push({
             title
           });

@@ -1,5 +1,5 @@
-import firebase from "firebase/compat/app"
-import "firebase/compat/auth"
+import { initializeApp, getApps } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
@@ -10,13 +10,21 @@ export default defineNuxtPlugin(() => {
     projectId: config.public.projectId,
   }
   
-  if (!firebase.apps.length) {
-    firebase.initializeApp(fbConfig)
+  // Initialize Firebase
+  let app
+  if (!getApps().length) {
+    app = initializeApp(fbConfig)
+  } else {
+    app = getApps()[0]
   }
+  
+  const auth = getAuth(app)
   
   return {
     provide: {
-      firebase
+      firebase: {
+        auth: () => auth
+      }
     }
   }
 })

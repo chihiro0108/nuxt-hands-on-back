@@ -1,13 +1,16 @@
 <template>
-    <div>
-      <AddTodo @submit="addTodo" />
-      <TodoList :todos="todos" />
-    </div>
+  <div v-if="user"> <!-- v-ifを追加 -->
+    <p>名前：{{user.name}}</p>
+    <AddTodo @submit="addTodo" />
+    <TodoList :todos="todos" />
+  </div>
 </template>
   
 <script>
     import AddTodo from "@/components/AddTodo";
     import TodoList from "@/components/TodoList";
+    import { mapState } from 'pinia';
+    import { useAuthStore } from '@/stores/auth';
   
     export default {
       components: {
@@ -18,6 +21,13 @@
         return {
           todos: [],
         };
+      },
+      computed: {
+        ...mapState(useAuthStore, ['currentUser']),
+        user() {
+          console.log('Current user from store:', this.currentUser);
+          return this.currentUser;
+        }
       },
       methods: {
         async addTodo(title) {

@@ -64,9 +64,8 @@
           
           this.error = ""; // エラーをクリア
           const { $firebase } = useNuxtApp();
-          const res = await $firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.email, this.password);
+          const { createUserWithEmailAndPassword } = await import('firebase/auth');
+          const res = await createUserWithEmailAndPassword($firebase.auth(), this.email, this.password);
 
           if (!res || !res.user) {
             this.error = "※ユーザー作成に失敗しました";

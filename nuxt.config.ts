@@ -3,7 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   modules: [
-    'vuetify-nuxt-module'
+    'vuetify-nuxt-module',
+    '@pinia/nuxt'
+  ],
+  plugins: [
+    "@/plugins/axios",
+    "@/plugins/firebase",
+    "@/plugins/authCheck"
   ],
   runtimeConfig: {
     public: {

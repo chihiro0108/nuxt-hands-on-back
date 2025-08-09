@@ -1,5 +1,8 @@
 <template>
-  <v-app>
+  <v-app dark>
+    <div>
+        <Loading />
+    </div>
     <v-app-bar color="primary" dark>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>TODO App</v-toolbar-title>
@@ -24,12 +27,16 @@
         <slot />
       </v-container>
     </v-main>
+    <v-footer :absolute="!fixed" app>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import Loading from "@/components/Loading";
 
 const drawer = ref(false)
 const miniVariant = ref(false)
@@ -38,6 +45,8 @@ const clipped = ref(false)
 const authStore = useAuthStore()
 
 const user = computed(() => authStore.currentUser)
+
+const fixed = ref(false)
 
 const items = computed(() => {
   if (user.value) {

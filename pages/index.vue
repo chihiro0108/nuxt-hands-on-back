@@ -5,7 +5,6 @@
     <TodoList :todos="todos" />
   </div>
 </template>
-  
 <script>
     import AddTodo from "@/components/AddTodo";
     import TodoList from "@/components/TodoList";
